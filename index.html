@@ -114,7 +114,7 @@
           </div>
           <div class="col">
             <div class="image image-column">
-              <img src="imges/services.jpg" alt="">
+              <img src="imges/services.jpg" alt="img-services">
             </div>
           </div>
         </div>
@@ -130,21 +130,21 @@
         <p>if you do it right, it will last forever</p>
         <div class="portfolio-content">
           <div class="card">
-            <img src="imges/portfolio-1.jpg" alt="">
+            <img src="imges/portfolio-1.jpg" alt="Photo-One">
             <div class="info">
               <h3>Project Here</h3>
               <p>My creative ability is very difficlt to measure because it can manifest in so many surprising and.</p>
             </div>
           </div>
           <div class="card">
-            <img src="imges/portfolio-2.jpg" alt="">
+            <img src="imges/portfolio-2.jpg" alt="Photo-Two">
             <div class="info">
               <h3>Project Here</h3>
               <p>My creative ability is very difficlt to measure because it can manifest in so many surprising and.</p>
             </div>
           </div>
           <div class="card">
-            <img src="imges/portfolio-3.jpg" alt="">
+            <img src="imges/portfolio-3.jpg" alt="Photo-Three">
             <div class="info">
               <h3>Project Here</h3>
               <p>My creative ability is very difficlt to measure because it can manifest in so many surprising and.</p>
@@ -206,5 +206,56 @@
          &copy; 2021 <span>Leon</span> All Right Reserved
        </div>
        <!-- end footer -->
+
+
+       <script>
+
+        let imagesCard = document.querySelectorAll(".portfolio-content .card img");
+
+        imagesCard.forEach(img => {
+          img.addEventListener("click",(e) =>{
+              
+            let overlay = document.createElement("div");
+            overlay.className="overlay";
+            document.body.appendChild(overlay);
+
+            let imageBox = document.createElement("div");
+            imageBox.className="image-box";
+
+            if(img.alt !== null){
+              let heading = document.createElement("h3");
+              let textHeading = document.createTextNode(img.alt);
+
+              heading.appendChild(textHeading);
+
+              imageBox.appendChild(heading);
+            }
+
+            let myImg = document.createElement("img");
+            myImg.className="my-img";
+            myImg.src = img.src;
+
+            imageBox.appendChild(myImg);
+            document.body.appendChild(imageBox);
+
+            let closeButton = document.createElement("span");
+            closeButton.className="close-button";
+            let iconButton = document.createTextNode("X");
+
+            closeButton.appendChild(iconButton);
+
+            imageBox.appendChild(closeButton);
+
+            document.addEventListener("click",(e) =>{
+             
+              if(e.target.className == "close-button"){
+                e.target.parentElement.remove();
+                overlay.remove();
+              }
+            })      
+          })
+        });
+
+       </script>
   </body>
 </html>
